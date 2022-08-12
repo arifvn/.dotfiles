@@ -1,0 +1,142 @@
+# ##############################################################################
+# #         ░█▀▀░▀█▀░█▀█░█▀▄░█▀▀░█░█░▀█▀░█▀█░░░█▀▀░█▀█░█▀█░█▀▀░▀█▀░█▀▀         #
+# #         ░▀▀█░░█░░█▀█░█▀▄░▀▀█░█▀█░░█░░█▀▀░░░█░░░█░█░█░█░█▀▀░░█░░█░█         #
+# #         ░▀▀▀░░▀░░▀░▀░▀░▀░▀▀▀░▀░▀░▀▀▀░▀░░░░░▀▀▀░▀▀▀░▀░▀░▀░░░▀▀▀░▀▀▀         #
+# #~~~~~~~~~~~~~~~~~~~~ author: https://github.com/arifvn ~~~~~~~~~~~~~~~~~~~~~#
+# # source: https://starship.rs/presets/pastel-powerline.html                  #
+# ##############################################################################
+
+format = """
+[](#C6AAE8)\
+$username\
+[](bg:#DA627D fg:#C6AAE8)\
+$directory\
+[](bg:#EBDDAA fg:#DA627D)\
+$git_branch\
+$git_status\
+[](bg:#86BBD8 fg:#EBDDAA)\
+$c\
+$elixir\
+$elm\
+$golang\
+$haskell\
+$java\
+$julia\
+$nodejs\
+$nim\
+$rust\
+[](bg:#06969A fg:#86BBD8)\
+$docker_context\
+[](bg:#33658A fg:#06969A)\
+$time\
+[ ](fg:#33658A)
+$character
+"""
+
+# Add the blank line at the start of the prompt
+add_newline = true
+
+[character]
+success_symbol = "[➜](bold green) "
+error_symbol = "[✗](bold red) "
+vicmd_symbol = "[V](bold green) "
+
+# You can also replace your username with a neat symbol like  to save some space
+[username]
+show_always = true
+style_user = "bold bg:#C6AAE8 fg:#3E3E3E"
+style_root = "bold bg:#C6AAE8 fg:#3E3E3E"
+format = '[  ]($style)'
+
+[directory]
+style = "bold bg:#DA627D fg:#F8F8F8"
+format = "[ $path ]($style)"
+truncation_length = 7
+truncation_symbol = "/"
+
+[directory.substitutions]
+"Documents" = " "
+"Downloads" = " "
+"Music" = " "
+"Pictures" = " "
+
+[c]
+symbol = " "
+style = "bg:#86BBD8"
+format = '[[ $symbol ($version) ](bg:#86BBD8)]($style)'
+
+[docker_context]
+symbol = " "
+style = "bg:#06969A"
+format = '[[ $symbol $context ](bg:#06969A)]($style) $path'
+
+[elixir]
+symbol = " "
+style = "bg:#86BBD8"
+format = '[[ $symbol ($version) ](bg:#86BBD8)]($style)'
+
+[elm]
+symbol = " "
+style = "bg:#86BBD8"
+format = '[[ $symbol ($version) ](bg:#86BBD8)]($style)'
+
+[git_branch]
+symbol = ""
+style = "bg:#EBDDAA"
+format = '[[ $symbol $branch ](bg:#EBDDAA fg:#1E1E1E)]($style)'
+
+[git_status]
+style = "bg:#EBDDAA"
+format = '[[($all_status$ahead_behind )](bg:#EBDDAA fg:#1E1E1E)]($style)'
+conflicted = "= "
+ahead = "⇡ ${count} "
+behind = "⇣ ${count} "
+diverged = "⇕ "
+up_to_date = " "
+untracked = "? "
+stashed = "$ "
+modified = "! "
+staged = '[+($count) ](bg:#EBDDAA fg:#1e1e1e)'
+renamed = "» "
+deleted = " "
+
+[golang]
+symbol = " "
+style = "bg:#86BBD8"
+format = '[[ $symbol ($version) ](bg:#86BBD8)]($style)'
+
+[haskell]
+symbol = " "
+style = "bg:#86BBD8"
+format = '[[ $symbol ($version) ](bg:#86BBD8)]($style)'
+
+[java]
+symbol = " "
+style = "bg:#86BBD8"
+format = '[[ $symbol ($version) ](bg:#86BBD8)]($style)'
+
+[julia]
+symbol = " "
+style = "bg:#86BBD8"
+format = '[[ $symbol ($version) ](bg:#86BBD8)]($style)'
+
+[nodejs]
+symbol = ""
+style = "bg:#86BBD8"
+format = '[[ $symbol ($version) ](bg:#86BBD8)]($style)'
+
+[nim]
+symbol = " "
+style = "bg:#86BBD8"
+format = '[[ $symbol ($version) ](bg:#86BBD8)]($style)'
+
+[rust]
+symbol = ""
+style = "bg:#86BBD8"
+format = '[[ $symbol ($version) ](bg:#86BBD8)]($style)'
+
+[time]
+disabled = false
+time_format = "%R" # Hour:Minute Format
+style = "bg:#33658A"
+format = '[[ ♥ $time ](bg:#33658A)]($style)'

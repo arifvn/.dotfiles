@@ -1,0 +1,48 @@
+- yay:
+  - rxvt-unicode
+  - kitty
+    
+  - fish
+  - fzf
+  - ghq
+  - fd
+  - starship
+    
+  - neovim
+  - tmux
+  - lazygit
+    
+  - bat
+  - exa
+  - ripgrep
+  - bat
+  - dust
+  - subversion
+  - ranger
+    
+  - vivaldi
+  - vlc
+    
+  # Linux specific (Mandatory)
+  - feh                   # Wallpaper setter
+  - xdg-utils             # Set default application
+  - xclip                 # Clipboard
+  - lxappearance          # GTK+ theme swither
+  - xfce4-power-manager   # Power manager
+  - unclutter             # Auto hide cursor
+  - arandr                # Monitor resolution
+  - blueman               # Bluetooth manager
+  - light                 # Brightness control
+  - pavucontrol           # PulseAudio Volume control
+  - pamixer               # Adjust pavucontrol
+  - playerctl             # Media control
+  - xorg-xinput           # Media control
+    
+  # Linux specific (Optional)
+  - pfetch                # System information
+  - rofi                  # App launcher
+  - polybar               # Statusbar
+  - picom                 # Compositor
+  - ueberzug              # Display image in terminal
+  - vivaldi-ffmpeg-codecs # Vivaldi additional codec
+

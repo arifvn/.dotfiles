@@ -1,0 +1,5 @@
+#!/bin/sh
+
+# Show clipboards history using rofi
+rofi -modi "clipboard:greenclip print" -no-show-icons \
+	-show clipboard -run-command '{cmd}' -config $HOME/.config/rofi/keyhelp.rasi

@@ -1,0 +1,6 @@
+#!/bin/sh
+# source: https://github.com/arifvn 
+
+# Search font name
+fc-list | awk -F ':' '{ for(i=2;i<=NF;++i ) printf $i" ",FS; print "";}' | fzf | xclip -i -selection clipboard
+

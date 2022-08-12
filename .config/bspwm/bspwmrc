@@ -1,0 +1,95 @@
+#!/bin/sh
+
+# ##############################################################################
+# #               ░█▀▄░█▀▀░█▀█░█░█░█▄█░░░█▀▀░█▀█░█▀█░█▀▀░▀█▀░█▀▀               # 
+# #               ░█▀▄░▀▀█░█▀▀░█▄█░█░█░░░█░░░█░█░█░█░█▀▀░░█░░█░█               # 
+# #               ░▀▀░░▀▀▀░▀░░░▀░▀░▀░▀░░░▀▀▀░▀▀▀░▀░▀░▀░░░▀▀▀░▀▀▀               # 
+# #~~~~~~~~~~~~~~~~~~~~ author: https://github.com/arifvn ~~~~~~~~~~~~~~~~~~~~~#
+# ##############################################################################
+
+# ##############################################################################
+# #                                  FUNCTIONS                                 # 
+# ##############################################################################
+
+# Credits to 6gk/polka
+rule() { bspc rule -a "$@" & }
+config() { bspc config "$@" & }
+
+# ##############################################################################
+# #                                AUTOSTART APPS                              #
+# ##############################################################################
+
+runX(){
+  xrdb ~/.Xresources &                # X [Source .Xresources for urxvt]
+  xsetroot -cursor_name left_ptr &    # X [Set cursor]
+  xset s off -dpms &                  # X [Turn off screen saver]
+  xset r rate 200 30 &                # X [Change keyboard repeating speed]
+  xmodmap $HOME/.Xmodmap &            # X [Source keyboard remap]
+  
+  # X [Set monitor]
+	xrandr --output HDMI-1 --primary --mode 1366x768 --rotate normal --brightness 0.65 --pos 0x0 --output eDP-1 --off
+}
+
+runDaemon(){
+  pgrep -x unclutter > /dev/null || unclutter &                         # Unclutter (auto hide cursor)
+  pgrep -x xfce4-power-manager > /dev/null || xfce4-power-manager &     # XFCE4-power-manager
+  [ -n "$(pidof xfce-polkit)" ] || /usr/lib/xfce-polkit/xfce-polkit &   # Polkit daemon 
+  pgrep -x sxhkd > /dev/null || sxhkd &                                 # Keyboard daemon
+  pgrep -x greenclip > /dev/null || $HOME/.bin/greenclip daemon &       # Greenclip clipboard daemon
+  dunst --config $HOME/.config/dunst/dunstrc > /dev/null &              # Dunst notification
+  pgrep -x picom > /dev/null || picom -b --config $HOME/.config/picom/picom.conf & # Compositor --backend xr_glx_hybrid or xrender
+}
+
+runApp(){
+  eww -c $HOME/.config/eww/bar/ open bar &                                       # Bar
+  feh --bg-fill --auto-zoom --randomize $HOME/.wallpapers/faded-mountains.jpg &  # Wallpaper
+  pgrep -x urxvt > /dev/null || urxvt &                                          # Terminal
+}
+
+runX
+runDaemon
+runApp
+
+# ##############################################################################
+# #                                 WINDOW RULES                               #
+# ##############################################################################
+
+bspc monitor HDMI-1 --reset-desktops 1 2 3 4 &
+ 
+rule URxvt                          desktop=1 follow=on
+rule kitty                          desktop=1 follow=on
+rule Code                           desktop=1 follow=on
+rule Vivaldi-stable                 desktop=2 follow=on
+
+rule Blueman-manager                desktop=focused follow=on state=floating rectangle=580x440+0+0 center=true
+rule Xfce4-power-manager-settings   desktop=focused follow=on state=floating rectangle=580x440+0+0 center=true
+rule Pavucontrol                    desktop=focused follow=on state=floating rectangle=681x540+0+0 center=true
+rule Lxappearance                   desktop=focused follow=on state=floating rectangle=680x540+0+0 center=true
+rule Arandr                         desktop=focused follow=on state=floating rectangle=580x440+0+0 center=true
+rule Gpick                          desktop=focused follow=on state=floating
+rule Sxiv                           desktop=focused follow=on state=floating center=true
+rule Thunar                         desktop=3 follow=on state=floating rectangle=860x710+0+0 center=true
+rule vlc                            desktop=4 follow=on state=floating center=true
+
+# ##############################################################################
+# #                            GENERAL CONFIGURATION                           #
+# ##############################################################################
+
+config remove_disabled_monitors     true
+config remove_unplugged_monitors    true
+
+config pointer_modifier             Mod4
+config border_radius                15
+config window_gap                   16
+config border_width                 3
+
+config top_padding                  0
+config left_padding                 47
+config right_padding                0
+config bottom_padding               0
+
+config split_ratio                  0.58
+config borderless_monocle           true
+config gapless_monocle              true
+
+xdo lower -N eww-bar                # Fix windows being below bar

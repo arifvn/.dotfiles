@@ -1,0 +1,10 @@
+@import "launcher.rasi"
+
+* {
+    font: "CaskaydiaCove Nerd Font 10";
+}
+
+window {
+    width: 680px;
+}
+

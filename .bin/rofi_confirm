@@ -1,0 +1,7 @@
+#!/bin/sh
+
+rofi -dmenu\
+     -i\
+     -no-fixed-num-lines\
+     -p "Are You Sure? : "\
+     -theme ~/.config/rofi/confirm.rasi

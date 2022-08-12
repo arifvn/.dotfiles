@@ -1,0 +1,15 @@
+#!/bin/sh
+# Set wallpaper using feh + fzf
+# source https://github.com/arifvn 
+
+# Usage:
+# ffeh <directory>
+# ffeh <image_file>
+
+if [[ ! -z "$1" ]]; then
+  WALLPAPER_DIR=$1
+fi
+
+find $WALLPAPER_DIR -maxdepth 1 -type f -exec file --mime-type {} \+ | awk -F: '{if ($2 ~/image\//) print $1}' | \
+  fzf --preview="feh --bg-fill --auto-zoom {}" --preview-window=0 --prompt="SetWallpaper>" | \
+  xargs -I {} feh --bg-fill --auto-zoom {}

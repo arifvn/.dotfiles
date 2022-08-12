@@ -1,0 +1,20 @@
+configuration {
+    disable-history:                false;
+    click-to-exit:                  true;
+    kb-cancel:                      "Escape,Control+c";
+    cycle:                          true;
+}
+
+* {
+	background:			#181f21;
+	background-alt:		#2a3032;
+	brdr:               #131a1c;
+    foreground:			#D8D8D8;
+    foresel:            #67AFC1;
+    selected:			#2a3032;
+	urgent:				#E06C75;
+	on:					#87A181;
+	off:				#D88B9F;
+    font:               "SF Pro 10";
+}
+

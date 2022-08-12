@@ -1,0 +1,19 @@
+Launch Terminal, urxvt
+Web Browser, vivaldi-stable
+File Manager, thunar,org.xfce.thunar
+Favorites, ^checkout(favorites),user-bookmarks
+
+^sep()
+Restart WM, bspc wm -r; notify-send "BSPWM" "BSPWM Reloaded!" 
+Lock Screen, betterlockscreen -l dim
+Exit, ^checkout(exit),system-shutdown
+
+^tag(favorites)
+Visual Studio Code, code --unity-launch,visual-studio-code
+VLC, vlc
+
+^tag(exit)
+Sleep,betterlockscreen --suspend
+Log Out, bspc quit,system-logout
+Reboot, systemctl -i reboot,system-reboot
+Shutdown, systemctl -i poweroff,system-shutdown

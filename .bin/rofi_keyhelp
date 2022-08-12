@@ -1,0 +1,8 @@
+#!/bin/sh
+
+# Show keyboard shortcuts using rofi
+awk '/^[a-zA-Z~]/ && last { print last,"\t",toupper($0) } { last="" } /^#/{last=$0}' $HOME/.config/sxhkd/sxhkdrc |
+    tr -d '#' |
+    column -t -s$'\t' |
+    rofi -i -config $HOME/.config/rofi/keyhelp.rasi -p shortcuts -dmenu
+

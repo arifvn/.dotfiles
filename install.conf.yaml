@@ -1,0 +1,68 @@
+- defaults:
+    link:
+      create: true
+      force: true
+      relink: true
+    clean:
+      force: true
+      recursive: true
+
+- clean:
+    ~/:
+      recursive: false
+    ~/.config:
+    ~/.fonts:
+
+- shell:
+  - [git clone https://github.com/AstroNvim/AstroNvim ~/.config/nvim, Cloning AstroNvim configuration]
+  
+- link:
+    # Link .config
+    ~/.config/:
+        glob: true
+        path: .config/*
+        exclude: [ .config/fish, .config/nvim ]
+            
+    # Link fish shell
+    ~/.config/fish/completions/fisher.fish: .config/fish/completions/fisher.fish
+    ~/.config/fish/functions/fish_title.fish: .config/fish/functions/fish_title.fish
+    ~/.config/fish/functions/fish_user_key_bindings.fish: .config/fish/functions/fish_user_key_bindings.fish
+    ~/.config/fish/functions/fisher.fish: .config/fish/functions/fisher.fish
+    ~/.config/fish/functions/fzf_change_directory.fish: .config/fish/functions/fzf_change_directory.fish
+    ~/.config/fish/functions/fzf_change_directory_up.fish: .config/fish/functions/fzf_change_directory_up.fish
+    ~/.config/fish/functions/fzf_jump_to_repository.fish: .config/fish/functions/fzf_jump_to_repository.fish
+    ~/.config/fish/functions/fzf_open_file.fish: .config/fish/functions/fzf_open_file.fish
+    ~/.config/fish/functions/fzf_select_history.fish: .config/fish/functions/fzf_select_history.fish
+    ~/.config/fish/config.fish: .config/fish/config.fish
+    ~/.config/fish/fish_plugins: .config/fish/fish_plugins
+        
+    # Link neovim
+    ~/.config/nvim/lua/user/init.lua: .config/nvim/lua/user/init.lua
+        
+    # Link git
+    ~/.gitconfig: .gitconfig
+    ~/.gitignore_global: .gitignore_global
+        
+    # Link X
+    ~/.xinitrc: .xinitrc
+    ~/.Xresources: .Xresources
+    ~/.Xmodmap: .Xmodmap
+        
+    # Link others
+    ~/.tmux.conf: .tmux.conf
+    ~/.fonts: .fonts
+    ~/.bin: .bin
+    ~/.themes: .themes
+    ~/.urxvt: .urxvt
+    ~/.wallpapers: .wallpapers
+        
+- shell:
+  - [git submodule update --init --recursive,   Installing submodules]
+  - [mkdir -p ~/ghq,                            Creating ~/ghq directory]
+  - [xrdb ~/.Xresources,                        Sourcing ~/.Xresources]
+  - [xmodmap ~/.Xmodmap,                        Remapping left-Ctrl to left-Alt]
+  - [fisher update && exec fish,                Installing fish plugins]
+  - [feh --bg-fill -Z -z ~/.wallpapers/,        Applying wallpapers]
+    
+- shell:
+  - [openbox --restart,                         Restarting openbox]

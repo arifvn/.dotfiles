@@ -1,0 +1,9 @@
+[init]
+	defaultBranch = main
+[user]
+	email = maftukhatularifin13@gmail.com
+	name = arifvn
+[credential]
+	helper = cache
+[core]
+	excludesfile = ~/.gitignore_global

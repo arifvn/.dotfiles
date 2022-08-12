@@ -1,0 +1,213 @@
+# ##############################################################################
+# #							░█▀▀░█░█░█░█░█░█░█▀▄░░░█▀▀░█▀█░█▀█░█▀▀░▀█▀░█▀▀								 #
+# #							░▀▀█░▄▀▄░█▀█░█▀▄░█░█░░░█░░░█░█░█░█░█▀▀░░█░░█░█								 #
+# #							░▀▀▀░▀░▀░▀░▀░▀░▀░▀▀░░░░▀▀▀░▀▀▀░▀░▀░▀░░░▀▀▀░▀▀▀								 #
+# #~~~~~~~~~~~~~~~~~~~~ author: https://github.com/arifvn ~~~~~~~~~~~~~~~~~~~~~#
+# ##############################################################################
+
+# ##############################################################################
+# #                                 APPLICATIONS                               #
+# ##############################################################################
+
+# Open Browser.
+super + v     
+	vivaldi-stable
+
+# Open Terminal.
+super + Return     
+	urxvt
+
+# Open Floating Terminal.
+super + shift + Return
+	bspc rule -a URxvt -o desktop=focused state=floating follow=on center=true rectangle=940x650+0+0 && urxvt
+
+# Open Launcher.
+alt + space         
+	sh $HOME/.bin/rofi_launcher
+
+# Open Clipboards.
+super + c
+	sh $HOME/.bin/rofi_clipboard
+
+# Open This Help.
+super + slash
+	sh $HOME/.bin/rofi_keyhelp
+
+# Open Context Menu.
+super + a
+	echo -e "$(cat $HOME/.config/jgmenu/menu.txt)" | jgmenu --simple
+	
+# Open Bluetooth Menu. 
+super + b
+	sh $HOME/.bin/rofi_bluetooth
+	
+# Open Wifi Menu.
+super + w
+	$HOME/.bin/rofi_wifimenu
+	
+# Openk Monitor Menu.
+super + m
+	sh $HOME/.bin/rofi_monitor
+
+# Open Powermenu.
+super + q
+	sh $HOME/.bin/rofi_powermenu
+
+# Open Touchpad Menu.
+super + t
+	sh $HOME/.bin/rofi_touchpad
+	
+# Generate Random Password.
+super + g
+	sh $HOME/.bin/sx_randompass
+    
+# Select Wallpaper, press mq to Apply. 
+super + s
+	feh --bg-fill --auto-zoom (sxiv -t -o $WALLPAPER_DIR)
+	
+# ##############################################################################
+# #                                MOUSE HOTKEYS                               #
+# ##############################################################################
+
+# Toggle Right Click Context Menu.
+~button3
+	bspc query -N -n pointed >/dev/null || jgmenu --config-file=$HOME/.config/jgmenu/jgmenurc
+
+# ##############################################################################
+# #                             WINDOW MANAGER KEYS                            #
+# ##############################################################################
+
+# Restart SXHKD.
+super + r
+	pkill -USR1 -x sxhkd; \
+	notify-send "SXHKD" "SXHKD Reloaded!" 
+
+# Restart BSPWM.
+super + Escape
+	bspc wm -r; \
+	notify-send "BSPWM" "BSPWM Reloaded!" 
+
+# Quit Bspwm.
+super + ctrl + q
+	bspc quit
+
+# ##############################################################################
+# #                                 WINDOW KEYS                                #
+# ##############################################################################
+
+# Kill Focused Window.
+ctrl + q
+	bspc node -c
+
+# Hide/Unhide Window.
+super + space
+  $HOME/.bin/sx_winhide
+    
+# Switch Windows.
+super + {p,n}
+	bspc node -f {prev,next}.local.!hidden.window
+	
+# Switch Desktop.
+ctrl + Tab
+	bspc desktop -f last
+	
+# Switch Focused Window.
+super + {_,shift + }{h,j,k,l}
+	bspc node -{f,s} {west,south,north,east}
+	
+# Toggle Fullscreen/Monocle.
+super + f
+  bspc node -t "~"fullscreen
+    
+# Toggle Floating/Tiled.
+super + shift + space
+	bspc node -t "~"{floating,tiled}   
+    
+# Toggle Marked/Locked/Sticky/Private.
+super + ctrl + {m,x,y,z}
+	bspc node -g {marked; notify-send "Toggle Marked!", \ 
+							 locked; notify-send "Toggle Locked!", \
+							 sticky; notify-send "Toggle Sticky!", \
+							 private; notify-send "Toggle Private!"}
+	
+# Set New Window Orientation.
+super + ctrl + {h,j,k,l}
+	bspc node -p {west,south,north,east}
+	
+# Cancel The New Window Orientation.
+super + ctrl + space
+	bspc node -p cancel
+	
+# Preselect New Window Ratio.
+super + ctrl + {1-9}
+	bspc node -o 0.{1-9}
+	
+# Move/Send Window to Workspace.
+super + {_,shift + }{1-5}
+	bspc {desktop -f,node -d} '^{1-5}' --follow
+
+# Move Floating Window.
+super + {Left,Down,Up,Right}
+	bspc node -v {-20 0,0 20,0 -20,20 0}
+	
+# Resize Window.
+super + alt + {h,j,k,l}
+  bspc node -z {left -20 0 || bspc node -z right -20 0, \
+                bottom 0 20 || bspc node -z top 0 20,\
+                top 0 -20 || bspc node -z bottom 0 -20,\
+                right 20 0 || bspc node -z left 20 0}
+
+# Resize Floating Window.
+super + alt + {minus,equal}
+  bspc node -z {top_right -20 20 && bspc node -z bottom_left 20 -20, \
+                top_right 20 -20 && bspc node -z bottom_left -20 20}
+                
+# Resize Gap.
+super + {minus,equal}
+	{ bash -c 'bspc config -d focused window_gap $(( $(bspc config -d focused window_gap) + 8 ))', \ 
+  bash -c 'bspc config -d focused window_gap $(( $(bspc config -d focused window_gap) - 8 ))'} && bspc config -d focused border_radius 15
+super + 0
+	bspc config -d focused window_gap 16 && bspc config -d focused border_width 3 && bspc config -d focused border_radius 15
+super + 9
+	bspc config -d focused window_gap 0 && bspc config -d focused border_width 0 && bspc config -d focused border_radius 0 
+  
+# ##############################################################################
+# #                          CONTROL AND MEDIA KEYS                            #
+# ##############################################################################
+
+# Raise/Lower Volume.
+XF86Audio{Raise,Lower}Volume
+	sh $HOME/.bin/sx_volume {up,down}
+
+# Mute/Unmute Volume.
+XF86AudioMute
+	sh $HOME/.bin/sx_volume mute
+
+# Play/Pause/Next/Prev.
+XF86Audio{Play,Next,Prev} 
+	playerctl {play-pause,next,previous}
+
+# Raise/Lower Brightness.
+XF86MonBrightness{Up,Down}
+	sh $HOME/.bin/sx_brightness {up,down}
+	
+# Take Screenshot Using Maim & Xdotool.
+Print
+	sh $HOME/.bin/sx_screenshot --now
+	
+# Take Screenshot in 5 Second.
+alt + Print	
+	sh $HOME/.bin/sx_screenshot --in5
+
+# Take Screenshot in 10 Second.
+shift + Print	
+	sh $HOME/.bin/sx_screenshot --in10
+
+# Take Screenshot of Active Window.
+ctrl + Print
+	sh $HOME/.bin/sx_screenshot --win
+
+# Take Screenshot of Area.
+ctrl + alt + Print
+	sh $HOME/.bin/sx_screenshot --area
+	

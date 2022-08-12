@@ -1,0 +1,27 @@
+#!/bin/sh
+# Download specific folder/file from github repository
+# source https://github.com/arifvn 
+# Usage:
+# gitdown <url> 
+# gitdown <url> .
+# gitdown <url> <name>
+
+name=$2
+if [[ -z $2 ]]; then
+  name=$(awk -F '/' '{print $NF}' <<< "$1")
+fi
+
+if [[ $1 == *"/blob/main/"* || $1 == *"/blob/master/"*  ]]; then
+  svn export "$(sed -E 's/tree\/master|tree\/main|blob\/main|blob\/master/trunk/' <<< "$1")" $name | \
+      awk 'NR==1 {print "./" $NF} END{ print "\n1 File Downloaded!" }'
+else
+  if [[ $2 == "." ]]; then
+    svn export "$(sed -E 's/tree\/master|tree\/main|blob\/main|blob\/master/trunk/' <<< "$1")" "tmp" | \
+      awk '/tmp\// && /.*[/].*/ { sub(/tmp/, "."); print $NF } END{ print "\nDownloaded!" }' && \
+      mv "tmp/"* . && rm -r "tmp"
+  else
+    svn export "$(sed -E 's/tree\/master|tree\/main|blob\/main|blob\/master/trunk/' <<< "$1")" $name | \
+      awk -v pattern="$name/" '$0 ~ pattern && /.*[/].*/ { print "./" $NF } END{ print "\nDownloaded!" }'  
+  fi
+fi
+

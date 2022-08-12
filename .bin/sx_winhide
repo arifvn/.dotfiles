@@ -1,0 +1,11 @@
+#!/bin/sh
+# Hide/Unhide BSPWM Node.
+# source https://github.com/I-LeCorbeau/dotfiles/blob/master/.local/bin/winhide
+
+hidden=$(bspc query -N -n .hidden -d focused)
+
+if [ -z "$hidden" ]; then
+	bspc node focused -g hidden=on
+else
+	bspc node "$hidden" -g hidden=off && bspc node -f prev.local.!hidden.window
+fi

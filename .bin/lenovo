@@ -1,0 +1,22 @@
+#!/bin/sh
+# Activate/Deactivate Lenovo conservative mode (max battery charge around 50% - 60%)
+# source https://github.com/arifvn 
+
+if [ -z $1 ]; then 
+    echo "No argument supplied."
+    exit 1
+fi
+
+if [ $1 == 1 ]; then 
+    echo "Lenovo conservative enabled."
+    echo 1 >/sys/bus/platform/drivers/ideapad_acpi/VPC2004:00/conservation_mode
+elif [ $1 == 0 ]; then 
+    echo "Lenovo conservative disabled."
+    echo 0 >/sys/bus/platform/drivers/ideapad_acpi/VPC2004:00/conservation_mode
+else 
+    echo "Invalid parameter. Usage:"
+    echo "lenovo 1"
+    echo "lenovo 0"
+    exit 1
+fi
+

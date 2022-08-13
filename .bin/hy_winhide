@@ -1,0 +1,11 @@
+#!/bin/sh
+# Script to minimize window (kinda).
+
+COUNT=$(hyprctl workspaces | awk '/workspace ID 11/ { getline; print $2 }') 
+
+if [[ -z $COUNT || $COUNT == 0 ]]; then
+	hyprctl dispatch movetoworkspacesilent 11
+else
+	hyprctl dispatch workspace 11;
+	hyprctl dispatch movetoworkspace 1;
+fi

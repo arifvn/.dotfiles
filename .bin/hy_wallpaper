@@ -1,0 +1,4 @@
+#!/bin/sh
+
+# Script to choose and set wallpaper.
+swaybg --mode fill --image $(sxiv -t -o $WALLPAPER_DIR)

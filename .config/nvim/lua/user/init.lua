@@ -30,9 +30,23 @@ local config = {
     default_theme = function(highlights) -- or a function that returns one
       local C = require "default_theme.colors"
 
-      highlights.Normal = { fg = C.fg, bg = C.bg }
+      highlights.Normal = { fg = C.fg, bg = "NONE" }
+      highlights.BufferLineBufferSelected = { fg = C.fg, bg = "NONE" }
+      highlights.BufferLineFill = { fg = C.fg, bg = "NONE" }
+      highlights.BufferLineTabClose = { fg = C.fg, bg = "NONE" }
+      highlights.BufferLineSeparator = { fg = C.fg, bg = "NONE" }
+      highlights.BufferLineModifiedSelected = { fg = C.fg, bg = "NONE" }
+      highlights.BufferLineCloseButtonSelected = { fg = C.fg, bg = "NONE" }
+      highlights.BufferLineDevIconLuaSelected = { fg = C.fg, bg = "NONE" }
+      highlights.BufferLineIndicatorSelected = { fg = C.fg, bg = "NONE" }
+      highlights.TelescopePromptNormal = { fg = C.fg, bg = "NONE" }
+      highlights.TelescopeResultsNormal = { fg = C.fg, bg = "NONE" }
       highlights.LightspeedCursor = { fg = '#1E222A', bg = '#D7FA00' }
-      highlights.NeoTreeNormal = { bg = '#181F21' }
+      highlights.NeoTreeNormal = { fg = C.fg, bg = "NONE" }
+      highlights.NeoTreeNormalNC = { fg = C.fg, bg = "NONE" }
+      highlights.NeoTreeSignColumn = { fg = C.fg, bg = "NONE" }
+      highlights.NeoTreeEndOfBuffer = { fg = C.fg, bg = "NONE" }
+      highlights.NeoTreeCursorLine = { fg = C.fg, bg = "NONE" }
       return highlights
     end,
   },
@@ -295,7 +309,7 @@ local config = {
     local opts = { noremap = true, silent = true }
     local map = vim.api.nvim_set_keymap
     -- Set key bindings
-    map("n", "O", ":lua require('telescope.builtin').find_files { hidden = true, no_ignore = true }<cr>", opts)
+    map("n", "<C-p>", ":lua require('telescope.builtin').find_files { hidden = true, no_ignore = true }<cr>", opts)
     -- zj and zk to add blank line below and above
     map('n', 'zj', 'o<Esc>k', opts)
     map('n', 'zk', 'O<Esc>j', opts)

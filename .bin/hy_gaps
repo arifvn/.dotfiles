@@ -1,0 +1,15 @@
+#!/bin/sh
+# Script to change hyprland gaps.
+
+case "$1" in
+	'add') 
+		hyprctl getoption general:gaps_out | awk -v size=$2 '/int/ { print $2+size }' | xargs -ro hyprctl keyword general:gaps_out
+					;;
+	'min') 
+		hyprctl getoption general:gaps_out | awk -v size=$2 '/int/ { if($2>0) print $2-size }' | xargs -ro hyprctl keyword general:gaps_out
+					;;
+	'reset') 
+		hyprctl keyword general:gaps_out $2
+					;;
+esac	
+

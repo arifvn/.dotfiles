@@ -295,7 +295,7 @@ local config = {
     local opts = { noremap = true, silent = true }
     local map = vim.api.nvim_set_keymap
     -- Set key bindings
-    map("n", "O", ":lua require('telescope.builtin').find_files { hidden = true, no_ignore = true }<cr>", opts)
+    map("n", "<C-p>", ":lua require('telescope.builtin').find_files { hidden = true, no_ignore = true }<cr>", opts)
     -- zj and zk to add blank line below and above
     map('n', 'zj', 'o<Esc>k', opts)
     map('n', 'zk', 'O<Esc>j', opts)

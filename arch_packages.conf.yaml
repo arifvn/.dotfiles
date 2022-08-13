@@ -2,6 +2,7 @@
   - rxvt-unicode
   - kitty
     
+  - git
   - fish
   - fzf
   - ghq
@@ -21,28 +22,61 @@
   - ranger
     
   - vivaldi
+  - youtube-dl
   - vlc
     
-  # Linux specific (Mandatory)
-  - feh                   # Wallpaper setter
-  - xdg-utils             # Set default application
-  - xclip                 # Clipboard
-  - lxappearance          # GTK+ theme swither
-  - xfce4-power-manager   # Power manager
-  - unclutter             # Auto hide cursor
-  - arandr                # Monitor resolution
-  - blueman               # Bluetooth manager
-  - light                 # Brightness control
-  - pavucontrol           # PulseAudio Volume control
-  - pamixer               # Adjust pavucontrol
-  - playerctl             # Media control
-  - xorg-xinput           # Media control
+  # Settings (GUI)
+  - xfce-polkit
+  - xfce4-taskmanager
+  - xfce4-power-manager   
+  - lxappearance        
+  - blueman           
+  - pavucontrol    
+  - arandr             
     
-  # Linux specific (Optional)
-  - pfetch                # System information
-  - rofi                  # App launcher
-  - polybar               # Statusbar
-  - picom                 # Compositor
-  - ueberzug              # Display image in terminal
-  - vivaldi-ffmpeg-codecs # Vivaldi additional codec
+  # Settings (CLI)
+  - bluetoothctl      
+  - brightnessctl
+  - playerctl             
+  - amixer
+  - pamixer
+  - light           
+    
+  - feh                   
+  - sxiv
+  - ueberzug          
+  - glow
+    
+  - xclip                 
+  - xorg-xinput           
+  - xorg-xrandr
+  - xorg-xset
+  - xorg-xsetroot
+  - xorg-xmodmap
+  - xorg-xkill
+  - xorg-xprop
+  - xorg-xserver
+  - xorg-xinit
+  - xorg-xinput
+  - xorg-xrdb
+  - xdotool
+  - xdg-utils            
+    
+  - maim
+  - unclutter             
+  - pfetch                
+  - vivaldi-ffmpeg-codecs
+    
+  - bspwm-rounded-corners-git
+  - sxhkd                
+  - picom-pijulius-git 
+  - jgmenu                
+  - eww-git                
+  - dunst
+  - rofi                 
 
+  - nemo
+  - visual-studio-code-bin
+  - gpick                
+  - thunar                
+    

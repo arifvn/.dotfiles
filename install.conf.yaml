@@ -25,6 +25,7 @@
             
     # Link fish shell
     ~/.config/fish/completions/fisher.fish: .config/fish/completions/fisher.fish
+    ~/.config/fish/functions/fish_git_open.fish: .config/fish/functions/fish_git_open.fish
     ~/.config/fish/functions/fish_title.fish: .config/fish/functions/fish_title.fish
     ~/.config/fish/functions/fish_user_key_bindings.fish: .config/fish/functions/fish_user_key_bindings.fish
     ~/.config/fish/functions/fisher.fish: .config/fish/functions/fisher.fish
@@ -62,7 +63,4 @@
   - [xrdb ~/.Xresources,                        Sourcing ~/.Xresources]
   - [xmodmap ~/.Xmodmap,                        Remapping left-Ctrl to left-Alt]
   - [fisher update && exec fish,                Installing fish plugins]
-  - [feh --bg-fill -Z -z ~/.wallpapers/,        Applying wallpapers]
     
-- shell:
-  - [openbox --restart,                         Restarting openbox]

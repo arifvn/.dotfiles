@@ -11,7 +11,7 @@
 ! # Source : https://github.com/catppuccin/urxvt/blob/main/catppuccin.Xresources
 ! ##############################################################################
  
-! special #1E222A
+! special 
 *.foreground: #DADAE8
 *.background: [100]#181F21
 Sxiv.background: #181F21

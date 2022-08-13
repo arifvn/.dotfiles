@@ -1,6 +1,8 @@
 function fish_user_key_bindings
-	# Change Directory = Ctrl+J or Ctrl+F
-  bind \cj fzf_change_directory 
+	# Open remote git repository = Ctrl+Y
+  bind \cy fish_git_open
+  
+	# Change Directory = Ctrl+F
   bind \cf fzf_change_directory 
 
 	# Change Directory Up = Ctrl+U

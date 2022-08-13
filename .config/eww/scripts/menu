@@ -1,0 +1,3 @@
+#!/bin/sh
+
+echo -e "$(cat $HOME/.config/jgmenu/menu.txt)" | jgmenu --simple &

@@ -2,6 +2,8 @@
 
 My personal BSPWM config.
 
+![screenshot](https://raw.githubusercontent.com/arifvn/.dotfiles/main/doc/sc.png)
+
 ### How to use
 
 1. **Make sure you have already backed up your configurations.**

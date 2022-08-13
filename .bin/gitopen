@@ -1,0 +1,8 @@
+#!/bin/sh
+# Open git remote link
+# source https://github.com/arifvn 
+
+# Usage:
+# gitdown
+
+git remote -v | awk 'NR==1 { print $2 }' | xargs -ro vivaldi-stable > /dev/null 2>&1

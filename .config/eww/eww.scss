@@ -1,0 +1,123 @@
+$bg: #181F21; 
+$fg: #DADAE8; 
+$gray: #636c7e;
+$green: #B1E3AD;
+$red: #E38C8F;
+$black: #181F21;
+$yellow: #EBDDAA;
+$magenta: #C6AAE8;
+$font1: "CaskaydiaCove Nerd Font";
+$font2: "SF Pro";
+
+* {
+  all: unset;
+}
+
+tooltip {
+	font-family: $font2;
+}
+
+// --------------------- TOP ---------------------
+.menu {
+  font-family: $font1;
+  background-color: $green;
+  border-radius: .2em;
+  padding: 0.15em 0.25em 0.15em 0.15em;
+  margin: 0.5em;
+  font-size: 1.5rem;
+  color: $bg;
+}
+
+.works {
+  font-family: $font1;
+  font-size: 1em;
+  font-weight: bold;
+  margin: 0 0 0 0.5em;
+  background-color: $bg;
+}
+
+.0 , .01, .02, .03, .04, .05, .06,
+.011, .022, .033, .044, .055, .066{
+  margin: 0.8em 0.75em 0 0;
+}
+
+.0 {
+  color: $gray;
+}
+
+.01, .02, .03, .04, .05, .06 {
+  color: $fg; 
+}
+
+.011, .022, .033, .044, .055, .066 {
+  color: $green; 
+}
+
+
+// --------------------- BOTTOM ---------------------
+.title {
+  font-family: $font2;
+  font-size: 1rem;
+  background-color: $gray;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  margin: 1rem .5rem 0 .5rem;
+  padding-left: .18rem;
+  color: $fg;
+}
+
+.battery {
+  font-family: $font1;
+  font-size: 1rem;
+  background-color: $green;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  padding: .5em .15em;
+  margin: 0 .5rem 0 .5rem;
+  color: $bg;
+}
+
+.caps-off {
+  background-color: $red;
+}
+
+.caps-on {
+  background-color: $yellow;
+}
+
+.wifi {
+  font-family: $font1;
+  font-size: 1.5rem;
+  background-color: $green;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  padding: .25rem .65rem .25rem 0;
+  margin: 0 .5rem 0 .5rem;
+  color: $bg;
+}
+
+.wifi-on {
+  background-color: $yellow;
+}
+
+.wifi-off {
+  padding: .25rem .65rem .25rem 0.15rem;
+  background-color: $red;
+}
+
+.time {
+  font-family: $font1;
+  font-weight: bold;
+  font-size: 1.5em;
+  color: $fg;
+  border-radius: 5px;
+  margin: 1rem .25rem .75rem 0;
+  padding-right: .6rem;
+  padding-left: .6rem;
+}
+
+// --------------------- BAR ---------------------
+.bar {
+  background-color: $bg;
+}
+

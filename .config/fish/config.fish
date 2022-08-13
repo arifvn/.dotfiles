@@ -9,12 +9,11 @@
 # #                               AUTOSTART                                    # 
 # ##############################################################################
 
-# Run startx at login from tty
-# if status --is-login
-#   if test -z "$DISPLAY" -a $XDG_VTNR = 1
-#     exec startx -- -keeptty
-#   end
-# end
+if status --is-login
+   if test -z "$DISPLAY" -a $XDG_VTNR = 1
+     exec startx -- -keeptty
+   end
+end
 
 # Disable fish greeting messages
 set fish_greeting
@@ -68,7 +67,6 @@ abbr --add l 'clear'
 abbr --add pt 'pkill tmux'
 abbr --add tma 'tmux attach'
 abbr --add ef 'exec fish'
-abbr --add vio 'nvim "+lua require(\'telescope.builtin\').oldfiles()"'
 abbr --add mv 'mv -v'
 abbr --add cp 'cp -vr'
 abbr --add dun 'pkill dunst && dunst &; notify-send "DUNST" "Dunst is Working!"'

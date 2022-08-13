@@ -14,10 +14,10 @@ window {
     border-radius: 					15px;
     width: 							350px;
     height: 						0px;
-    anchor:                         South East;
-    location:                       South East;
-    y-offset:                       -15px;
-    x-offset:                       -15px;
+    anchor:                         South West;
+    location:                       South West;
+    y-offset:                       -7px;
+    x-offset:                       58px;
     background-color:             	@background;
 }
 
@@ -184,3 +184,4 @@ message {
 textbox {
     text-color: 					@foreground;
 }
+

@@ -1,0 +1,4 @@
+#!/bin/sh
+# Kill selected process ID.
+
+ps aux | fzf | awk '{ print $2 }' | xargs -I '{}' kill -9 {}

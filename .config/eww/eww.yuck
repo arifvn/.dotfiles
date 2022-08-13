@@ -1,0 +1,225 @@
+;; -------------------- TOP -------------------- 
+;; --- MENU ---
+(defwidget menu []
+  (box :orientation "v" :space-evenly "false" :vexpand "false" :hexpand "false"
+  (button :class "menu" :onclick "$HOME/.config/eww/scripts/menu" "")))
+  
+
+;; --- WORKSPACE ---
+(deflisten workspace "scripts/workspaces")
+(defwidget workspaces []
+  (literal :content workspace))
+ 
+;; -------------------- BOTTOM -------------------- 
+;; --- CAPS_TITLE ---
+(defwidget caps_title []
+ (box :vexpand false :hexpand false :orientation "v"
+   (label :text "caps"
+          :limit-width 10
+          :valign "center"
+          :class "title")
+   )
+)
+;; --- CAPS ---
+(defwidget caps []
+ (box :vexpand false :hexpand false :orientation "v"
+   (caps_title)
+   (label :text "${capslock-status}"
+          :limit-width 3
+          :valign "center"
+          :tooltip "Capslock ${capslock-status}"
+          :class "battery caps-${capslock-status}")
+   )
+)
+(defpoll capslock-status :interval "1s" "xset -q | grep 'Caps' | awk '{ print $4 }'")
+
+;; --- TEMP_TITLE ---
+(defwidget temp_title []
+ (box :vexpand false :hexpand false :orientation "v"
+   (label :text "tem"
+          :limit-width 10
+          :valign "center"
+          :class "title")
+   )
+)
+;; --- TEMP ---
+(defwidget temp []
+ (box :vexpand false :hexpand false :orientation "v"
+   (temp_title)
+   (label :text "${round(EWW_TEMPS.CPU, 0)}°c"
+          :limit-width 4
+          :valign "center"
+          :tooltip "Temperature ${EWW_TEMPS.CPU}"
+          :class "battery")
+   )
+)
+
+;; --- RAM_TITLE ---
+(defwidget ram_title []
+ (box :vexpand false :hexpand false :orientation "v"
+   (label :text "ram"
+          :limit-width 10
+          :valign "center"
+          :class "title")
+   )
+)
+;; --- RAM ---
+(defwidget ram []
+ (box :vexpand false :hexpand false :orientation "v"
+   (ram_title)
+   (label :text "${replace(round(EWW_RAM.used_mem_perc, 1), '[.]', '')}"
+          :limit-width 10
+          :valign "center"
+          :tooltip "RAM ${EWW_RAM.used_mem_perc}"
+          :class "battery")
+   )
+)
+
+;; --- BRIGHTNESS_TITLE ---
+(defwidget brightness_title []
+ (box :vexpand false :hexpand false :orientation "v"
+   (label :text "bri"
+          :limit-width 10
+          :valign "center"
+          :class "title")
+   )
+)
+;; --- BRIGHTNESS ---
+(defwidget brightness []
+ (box :vexpand false :hexpand false :orientation "v"
+   (brightness_title)
+   (label :text "${current-brightness}"
+          :limit-width 10
+          :valign "center"
+          :tooltip "Brightness ${current-brightness}%"
+          :class "battery")
+   )
+)
+(defpoll current-brightness :interval "1s" "brightnessctl i | grep '%' | head -n 1 | awk -F'[()]' '{print $2}'")
+
+;; --- VOLUME_TITLE ---
+(defwidget volume_title []
+ (box :vexpand false :hexpand false :orientation "v"
+   (label :text "vol"
+          :limit-width 10
+          :valign "center"
+          :class "title")
+   )
+)
+;; --- VOLUME ---
+(defwidget volume []
+ (box :vexpand false :hexpand false :orientation "v"
+   (volume_title)
+   (label :text "${current-volume}%"
+          :limit-width 10
+          :valign "center"
+          :tooltip "Volume ${current-volume}%"
+          :class "battery")
+   )
+)
+(defpoll current-volume :interval "1s" "amixer -D pulse get Master | grep '%' | head -n 1 | awk -F'[' '{print $2}' | awk -F'%' '{print $1}'")
+
+;; --- BATTERY_TITLE ---
+(defwidget battery_title []
+ (box :vexpand false :hexpand false :orientation "v"
+   (label :text "bat"
+          :limit-width 10
+          :valign "center"
+          :class "title")
+   )
+)
+;; --- BATTERY ---
+(defwidget battery []
+ (box :vexpand false :hexpand false :orientation "v"
+   (battery_title)
+   (label :text "${EWW_BATTERY.BAT0.capacity}%"
+          :limit-width 10
+          :valign "center"
+          :tooltip "Battery ${EWW_BATTERY.BAT0.capacity}%"
+          :class "battery")
+
+   )
+)
+
+;; --- WIFI_TITLE ---
+(defwidget wifi_title []
+ (box :vexpand false :hexpand false :orientation "v"
+   (label :text "con"
+          :limit-width 10
+          :valign "center"
+          :class "title")
+   )
+)
+;; --- WIFI ---
+(defwidget wifi []
+ (box :vexpand false :hexpand false :orientation "v"
+   (wifi_title)
+   (label :text {wifi.icon}
+          :limit-width 10
+          :tooltip {wifi.status}
+          :class {wifi.class})
+
+   )
+)
+(defpoll wifi :interval "3s" "./scripts/wifi")
+
+;; --- TIME ---
+(defwidget time []
+    (box    :orientation "v"
+            :class "time"
+            :valign "end"
+            :halign "center"
+    (button    :class "time-hour"
+    :tooltip "Hour"	hour)
+    (button    :class "time-min"
+    :tooltip "Minute"	min)))
+(defpoll hour   :interval "1s"    "date '+%H'")
+(defpoll min    :interval "1s"    "date '+%M'")
+
+;; -------------------- BAR-TOP -------------------- 
+(defwidget top []
+    (box :orientation "v" :space-evenly false
+  (menu)
+  (workspaces)
+  )
+)
+
+;; -------------------- BAR-BOTTOM -------------------- 
+(defwidget bottom []
+    (box :orientation "v"
+    :space-evenly false
+    :valign "end"
+    :halign "center"
+  (caps)
+  (ram)
+  (temp)
+  (brightness)
+  (volume)
+  (battery)
+  (wifi)
+  (time)
+  )
+)
+
+;; -------------------- BAR-ALL -------------------- 
+(defwidget top_bottom []
+  (box :class "bar"
+       :orientation "v"
+       :spacing -220
+       :halign "center"
+       (top)
+       (bottom)
+    )
+  )
+
+(defwindow bar
+          :geometry (geometry :x "0px"
+                           :y "0px"
+                           :width "47px"
+                           :height "100%"
+                           :anchor "left center")
+          :stacking "fg"
+          :windowtype "dock"
+  (top_bottom)
+)
+

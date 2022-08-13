@@ -27,11 +27,11 @@ alt + space
 
 # Open Clipboards.
 super + c
-	sh $HOME/.bin/rofi_clipboard
+	$HOME/.bin/rofi_clipboard
 
 # Open This Help.
 super + slash
-	sh $HOME/.bin/rofi_keyhelp
+	$HOME/.bin/rofi_keyhelp
 
 # Open Context Menu.
 super + a
@@ -39,7 +39,7 @@ super + a
 	
 # Open Bluetooth Menu. 
 super + b
-	sh $HOME/.bin/rofi_bluetooth
+	$HOME/.bin/rofi_bluetooth
 	
 # Open Wifi Menu.
 super + w
@@ -47,32 +47,24 @@ super + w
 	
 # Openk Monitor Menu.
 super + m
-	sh $HOME/.bin/rofi_monitor
+	$HOME/.bin/rofi_monitor
 
 # Open Powermenu.
 super + q
-	sh $HOME/.bin/rofi_powermenu
+	$HOME/.bin/rofi_powermenu
 
 # Open Touchpad Menu.
 super + t
-	sh $HOME/.bin/rofi_touchpad
+	$HOME/.bin/rofi_touchpad
 	
 # Generate Random Password.
 super + g
-	sh $HOME/.bin/sx_randompass
+	$HOME/.bin/sx_randompass
     
 # Select Wallpaper, press mq to Apply. 
 super + s
 	feh --bg-fill --auto-zoom (sxiv -t -o $WALLPAPER_DIR)
 	
-# ##############################################################################
-# #                                MOUSE HOTKEYS                               #
-# ##############################################################################
-
-# Toggle Right Click Context Menu.
-~button3
-	bspc query -N -n pointed >/dev/null || jgmenu --config-file=$HOME/.config/jgmenu/jgmenurc
-
 # ##############################################################################
 # #                             WINDOW MANAGER KEYS                            #
 # ##############################################################################
@@ -177,11 +169,11 @@ super + 9
 
 # Raise/Lower Volume.
 XF86Audio{Raise,Lower}Volume
-	sh $HOME/.bin/sx_volume {up,down}
+	$HOME/.bin/sx_volume {up,down}
 
 # Mute/Unmute Volume.
 XF86AudioMute
-	sh $HOME/.bin/sx_volume mute
+	$HOME/.bin/sx_volume mute
 
 # Play/Pause/Next/Prev.
 XF86Audio{Play,Next,Prev} 
@@ -189,25 +181,25 @@ XF86Audio{Play,Next,Prev}
 
 # Raise/Lower Brightness.
 XF86MonBrightness{Up,Down}
-	sh $HOME/.bin/sx_brightness {up,down}
+	$HOME/.bin/sx_brightness {up,down}
 	
 # Take Screenshot Using Maim & Xdotool.
 Print
-	sh $HOME/.bin/sx_screenshot --now
+	$HOME/.bin/sx_screenshot --now
 	
 # Take Screenshot in 5 Second.
 alt + Print	
-	sh $HOME/.bin/sx_screenshot --in5
+	$HOME/.bin/sx_screenshot --in5
 
 # Take Screenshot in 10 Second.
 shift + Print	
-	sh $HOME/.bin/sx_screenshot --in10
+	$HOME/.bin/sx_screenshot --in10
 
 # Take Screenshot of Active Window.
 ctrl + Print
-	sh $HOME/.bin/sx_screenshot --win
+	$HOME/.bin/sx_screenshot --win
 
 # Take Screenshot of Area.
 ctrl + alt + Print
-	sh $HOME/.bin/sx_screenshot --area
+	$HOME/.bin/sx_screenshot --area
 	

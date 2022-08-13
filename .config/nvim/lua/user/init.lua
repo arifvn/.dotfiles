@@ -31,14 +31,6 @@ local config = {
       local C = require "default_theme.colors"
 
       highlights.Normal = { fg = C.fg, bg = "NONE" }
-      highlights.BufferLineBufferSelected = { fg = C.fg, bg = "NONE" }
-      highlights.BufferLineFill = { fg = C.fg, bg = "NONE" }
-      highlights.BufferLineTabClose = { fg = C.fg, bg = "NONE" }
-      highlights.BufferLineSeparator = { fg = C.fg, bg = "NONE" }
-      highlights.BufferLineModifiedSelected = { fg = C.fg, bg = "NONE" }
-      highlights.BufferLineCloseButtonSelected = { fg = C.fg, bg = "NONE" }
-      highlights.BufferLineDevIconLuaSelected = { fg = C.fg, bg = "NONE" }
-      highlights.BufferLineIndicatorSelected = { fg = C.fg, bg = "NONE" }
       highlights.TelescopePromptNormal = { fg = C.fg, bg = "NONE" }
       highlights.TelescopeResultsNormal = { fg = C.fg, bg = "NONE" }
       highlights.LightspeedCursor = { fg = '#1E222A', bg = '#D7FA00' }
@@ -60,7 +52,7 @@ local config = {
     },
     g = {
       mapleader = " ", -- sets vim.g.mapleader
-      tpipeline_statusline = '%!tpipeline#stl#line()'
+      -- tpipeline_statusline = '%!tpipeline#stl#line()'
     },
   },
 
@@ -198,6 +190,12 @@ local config = {
     },
     lightspeed = {
       ignore_case = true,
+    },
+    bufferline = {
+      options = {
+        show_tab_indicators = false,
+        separator_style = "thin",
+      },
     },
   },
 

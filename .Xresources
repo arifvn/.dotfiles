@@ -13,7 +13,7 @@
  
 ! special #1E222A
 *.foreground: #DADAE8
-*.background: [92]#181F21
+*.background: [100]#1A2026
 Sxiv.background: #181F21
 URxvt.cursorColor: #B1E3AD
 

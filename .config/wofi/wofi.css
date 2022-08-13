@@ -1,0 +1,76 @@
+@define-color background		#181F21;
+@define-color background-alt	#2A3032;
+@define-color brdr              #131A1C;
+@define-color foreground		#d8d8d8;
+@define-color foresel           #67afc1;
+@define-color selected			#2A3032;
+@define-color urgent			#e06c75;
+@define-color on				#87a181;
+@define-color off				#d88b9f;
+
+* {
+    font-family: "Inter";
+    font-size: 15px;
+}
+
+window {
+    margin: 0px;
+    background-color: @background;
+    border-radius: 0.8rem;
+}
+
+#input {
+    all:unset;
+    border: none;
+    margin: 1rem 1rem 0.75rem;
+    padding: 0.65rem 0.75rem;
+    border-radius: 0.5rem;
+    font-size: 16px;
+    color: @foreground;
+    background-color: @selected;
+}
+
+#input:focus {
+    outline-style:none;
+    border:none;
+}
+
+#inner-box {
+    margin: 0.5rem;
+    border: none;
+    background-color: @background;
+}
+
+#outer-box {
+    padding-bottom: 1rem;
+    border: 2px solid @background-alt;
+    border-radius: 0.8rem;
+    background-color: #181f21;
+}
+
+#scroll {
+    margin: 0px;
+    border: none;
+}
+
+#text {
+    margin: 0.5rem;
+    border: none;
+    color: @foreground;
+} 
+
+#text:selected {
+    color: @on;
+} 
+
+#entry {
+    all:unset;
+    margin: 0 0.5rem;
+    padding: 0.15rem 0.5rem;
+}
+
+#entry:selected {
+    background-color: @selected;
+    border-radius: 0.5rem;
+}
+

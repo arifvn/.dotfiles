@@ -1,7 +1,7 @@
 @import "common.rasi"
 
 configuration {
-    modi:                           "drun,window";
+    modi:                           "drun";
     show-icons:                     false;
     display-drun:                   "";
     drun-display-format:            "{name}";
@@ -11,7 +11,7 @@ configuration {
 window {
     border: 						3px;
     border-color:                   @selected;
-    border-radius: 					15px;
+    border-radius: 					8px;
     width: 							350px;
     height: 						0px;
     anchor:                         South East;

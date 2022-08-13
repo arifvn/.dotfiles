@@ -9,7 +9,10 @@ case "$1" in
 		hyprctl getoption general:gaps_out | awk -v size=$2 '/int/ { if($2>0) print $2-size }' | xargs -ro hyprctl keyword general:gaps_out
 					;;
 	'reset') 
-		hyprctl keyword general:gaps_out $2
+		hyprctl --batch "keyword general:gaps_out $2; keyword decoration:rounding 10"
+					;;
+	'maximize') 
+		hyprctl --batch "keyword general:gaps_out 0; keyword decoration:rounding 0"
 					;;
 esac	
 
